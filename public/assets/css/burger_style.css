@@ -4,6 +4,11 @@ li {
   background: #faebd7;
 }
 
+.burgerBody {
+  background-image: url(/public/assets/images/burger-1570463052PEK.jpg);
+  background-size: auto;
+}
+
 .label {
   font-weight: bold;
 }
@@ -16,4 +21,23 @@ li {
 
 .form-group {
   margin-bottom: 5px;
+  text-align: center;
+}
+
+.heading {
+  text-align: center;
+}
+
+.submit {
+  text-align: center;
+}
+
+#indexarea {
+  background-color: white;
+  border: 20px;
+  border-color: blue;
+  border-style: double;
+  padding: 50px;
+  margin: 50px;
+  display: block;
 }

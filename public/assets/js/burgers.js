@@ -1,6 +1,5 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
-  $(".change-devoured").on("click", function(event) {
+  $(".change-devour").on("click", function(event) {
     var id = $(this).data("id");
     var newDevour = $(this).data("newdevour");
 
@@ -23,23 +22,42 @@ $(function() {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
-    var newBurger = {
-      name: $("#ca")
-        .val()
-        .trim(),
-      devour: $("[name=devoured]:checked")
-        .val()
-        .trim()
-    };
+    var name = $("[name=devoured]:checked")
+      .val()
+      .trim();
 
-    // Send the POST request.
-    $.ajax("/api/burgers", {
-      type: "POST",
-      data: newBurger
+      if (name !== "") {
+        var newBurger = {
+          name: name
+        };
+
+        // var newBurger = {
+        //   name: $("#ca").trim(),
+        //   devour: $("[name=devoured]:checked").trim()
+        // };
+
+        // Send the POST request.
+        $.ajax("/api/burgers", {
+          type: "POST",
+          data: newBurger
+        }).then(function() {
+          console.log("created new cat");
+          // Reload the page to get the updated list
+          location.reload();
+        });
+      } else {
+        $("[name=devoured]:checked").val("");
+      }
+    });
+  });
+
+  $(".delete-sleep").on("click", function(event) {
+    var id = $(this).data("id");
+
+    $.ajax("/api/burgers/" + id, {
+      type: "DELETE"
     }).then(function() {
-      console.log("created new cat");
       // Reload the page to get the updated list
       location.reload();
     });
   });
-});
